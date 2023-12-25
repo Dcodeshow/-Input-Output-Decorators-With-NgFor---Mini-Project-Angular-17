@@ -20,4 +20,6 @@ export class CartComponent {
       this.data.qtn--;
     }
   }
+
+  onAddToCart() {}
 }
