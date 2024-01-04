@@ -9,7 +9,6 @@ import { ProductData } from './product-data';
   standalone: true,
   imports: [CommonModule, RouterOutlet, CartComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   data: ProductData[] = [
@@ -32,4 +31,22 @@ export class AppComponent {
       img: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/e/a/g/-original-imags37h4prxjazz.jpeg?q=70',
     },
   ];
+
+  cartbucket: ProductData[] = [];
+  updateCartEvent(e: any) {
+    console.log(e.addTocart);
+    if (e.addTocart) {
+      this.cartbucket.push(e.product);
+    } else {
+      this.cartbucket = this.cartbucket.filter((c) => c !== e.product);
+    }
+  }
+
+  calcPrice() {
+    let total = 0;
+    this.cartbucket.forEach((e) => {
+      total += e.price * e.qtn;
+    });
+    return total;
+  }
 }

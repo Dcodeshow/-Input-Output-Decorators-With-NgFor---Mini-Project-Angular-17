@@ -9,7 +9,7 @@
     <button class="btn btn-success mx-1" (click)="onIncrement()">+ Qtn</button>
     <button class="btn btn-success mx-1" (click)="onDecrement()">- Qtn</button
     ><button class="btn btn-success mx-1" (click)="onAddToCart()">
-      Add To Cart
+      {{ !isaddedToCart ? " Add To" : "Remove From" }} Cart
     </button>
   </div>
 </div>

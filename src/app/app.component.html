@@ -1,11 +1,16 @@
 <div class="container">
   <h4>Purchase Order</h4>
+  <ul>
+    <li *ngFor="let item of cartbucket">{{ item.name }}</li>
+  </ul>
+  <button class="btn btn-danger">Pay Now {{ calcPrice() }}</button>
   <hr />
   <div class="row">
     <app-cart
       class="col-md-4"
       *ngFor="let item of data"
       [data]="item"
+      (updateCartEvent)="updateCartEvent($event)"
     ></app-cart>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProductData } from '../product-data';
 
 @Component({
@@ -6,10 +6,10 @@ import { ProductData } from '../product-data';
   standalone: true,
   imports: [],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
 })
 export class CartComponent {
   @Input() data!: ProductData;
+  @Output() updateCartEvent = new EventEmitter<any>();
 
   onIncrement() {
     this.data.qtn++;
@@ -20,6 +20,13 @@ export class CartComponent {
       this.data.qtn--;
     }
   }
-
-  onAddToCart() {}
+  isaddedToCart: boolean = false;
+  onAddToCart() {
+    this.isaddedToCart = !this.isaddedToCart;
+    let payload = {
+      addTocart: this.isaddedToCart,
+      product: this.data,
+    };
+    this.updateCartEvent.emit(payload);
+  }
 }
